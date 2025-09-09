@@ -1,0 +1,248 @@
+<!DOCTYPE HTML>
+<title></title>                                                                 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+#dropdown {
+    position: relative;
+    display: inline-block;
+}
+#dropbtn {
+    background-color: #f1f1f1;
+    color: rgb(154, 23, 23);
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+        }
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    border: 1px solid #ddd;
+    overflow-y: auto;
+    color:red;
+    background-color: aliceblue;
+        }
+#dropdown:hover .dropdown-content {
+    display: block;
+        }
+input[type=checkbox] {
+    margin-right: 5px;
+        }
+label {
+    display: block;
+    margin-bottom: 5px;
+        }
+#Video{
+    position: fixed;     
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;    
+    z-index: -1;   
+    }
+@media(min-aspect-ratio:16/9){
+    #Video{
+        width:100%;
+        height:auto;
+
+        }
+    }
+@media(max-aspect-ratio:16/9){
+    #Video{
+        width:auto;
+        height:100%;
+
+    }
+}
+#v{
+    width:100%;
+    height:10%;
+    transition: width 2s;
+    font-family: sans-serif;
+    font-size: 20px;
+
+}
+#v:active{
+    width:60%;
+    height:5%;
+    
+}
+
+.p{
+    border: 1px;
+    border-style: double;
+    color:blanchedalmond;
+    text-align: center;
+        
+        
+}
+#g{
+    width : 1000px;
+    height:45px;
+    border-width: 10;
+    color:blanchedalmond;
+    text-align: center;
+    border: 1px;
+    border-style: double;
+        
+
+}
+#myAnimation{
+    width:50px;
+    height:50px;
+    position:absolute;
+
+}
+
+#Boy{
+    font-size: 20px;
+    color: blue;
+    border:2px solid;
+    border-width:2px;
+    position:relative;
+   top: 50px;
+}
+#Countdown{
+    width:500px;
+    height:200px;
+    position:absolute;
+    font-size:30px;
+    color:red;
+    top :  20px;
+    left:400px;
+    justify-content: center;
+}
+#firstsub-div{
+    color:pink;
+}
+#Form{
+    background-color: aqua;
+    top :50px;
+    left :400px;
+    position: absolute;
+    height:500px;
+    width:600px;
+}
+#name{
+    top :50px;
+    left :200px;
+    position: absolute;
+
+}
+        
+</style>
+<body id = 'body'>
+    <div id = 'v'>
+        <p class = 'p'>
+            <marquee scrollamount="10">Presenting NES International school's very first Tech FEST</marquee>
+        </p>
+        <p id = "g" >
+                elecTroNES : Version GeNESis
+    </p>
+    <div id = 'myContainer'>
+        <div id = 'firstsub-div'>
+            <p id = "Countdown"></p>
+        </div>
+        <img src="Screenshot 2025-09-05 144507.png"id="myAnimation">
+
+        <p id= "Boy">Working </p>
+    <div id="dropdown">
+        <button id="dropbtn">Select Items</button>
+        <div class="dropdown-content">
+            <p id = "Register" style="cursor:pointer;">Register Now</button><br>
+            <p id = "Who"style="cursor:pointer;">Who are we ?</button><br>
+            <p id = "Events"style="cursor:pointer;">Events</button><br>
+            <p id = "Contact"style="cursor:pointer;">Contact us</button><br>
+        </div>
+    </div>
+    <form id = "Form"> 
+        <label from="name" id = "na">Name of the participant</label>
+        <input type = 'text' id = "name">
+        <label from="Age" id = "Ag">Age:</label>
+        <input type = 'number' id = "Age">
+        <label from="Address" id = "Ad">Address *(Optional)</label>
+        <input type = 'text' id = "Address">
+        <label from="School" id = "Sc">School / Educational institute </label>
+        <input type = 'text' id = "School">
+        <label from="Event" id = "Ev">Events chosen</label>
+        <select id = "Event">
+            <option>Understanding Neural networks</option>
+            <option>Building from the ground up : Exploring mechanical engineering</option>
+            <option>Robotics and ethics</option>
+            <option>Hackathon</option>
+
+        </select>
+
+
+    </form>
+    <script>
+        var f = document.getElementById("Boy");
+        b = window.outerHeight;  
+        c = parseInt(b) ;
+        var a = (0.5*c);  
+        var html= document.getElementById("Register");    
+        var css = document.getElementById("Who");
+        var js = document.getElementById("Events");
+        var js = document.getElementById("Contact us");
+        s = localStorage.getItem("eventdate");
+        var countdownfinal = new Date(s).getTime() ;
+        setInterval(function() {
+            var current = new Date().getTime();
+            var timetill = countdownfinal-current;
+            var days = Math.floor(timetill / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((timetill% (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((timetill % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((timetill % (1000 * 60)) / 1000);
+            document.getElementById('Countdown').innerHTML = days  + 'days' +":" + hours +"hours" +":"+minutes + "minutes"+":"+seconds+"seconds";
+            if (timetill<=0){
+                document.getElementById('Countdown').innerHTML= "The flow of elecTroNES has begun";
+            }
+        } , 1000 );
+        document.getElementById('myContainer').style.width= 300+'px';
+        document.getElementById('myContainer').style.height = a+'px';
+        document.getElementById('myContainer').style.position = "relative";
+        var id = null;   
+        function myMove() {
+                var elem = document.getElementById("myAnimation");
+                var pos = 0;                                                                                                                                                
+                function frame() {
+                    for(pos;pos<=a ; pos++){
+                        elem.style.top = pos +'px'
+                        elem.style.left = pos +'px';
+                        setTimeout(frame , 300);
+                }
+                setInterval(frame, 30);
+                clearInterval(id);
+        }
+        }
+        myMove();
+        document.getElementById("Form").style.display = "none"
+        html.addEventListener("click" , function(){
+            document.getElementById("Form").style.display="block";
+            document.getElementById("Countdown").style.display="none";
+        });
+        html.addEventListener("mouseover" , function(){
+            n = setTimeout(h , 10000);
+            function h(){
+                alert("Please show a sign of assurance for registering for the  event through clicking the Button");
+            }
+         });
+         html.addEventListener("mouseleave" , function(){
+            clearTimeout(n);
+            function h(){
+                alert("Please show a sign of assurance for registering for the  event through clicking the Button");
+            }
+         });
+         css.addEventListener("mouseover" , function(){
+            document.getElementById("")
+         });
+  </script>
+    <video autoplay muted loop playsinline id = "Video" >
+        <source src = "3129957-uhd_3840_2160_25fps.mp4"  type = "video/mp4">
+    </video>
+
+   
+</body>
+</html>
